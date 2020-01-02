@@ -1,42 +1,51 @@
 ---
 
-- name: Print out pritunl database setup key
+- name: Register Pritunl database setup key output
   command: "{{ pritunl_openvpn_init_cmd_db_setup_key }}"
   register: cmd_output_1
   ignore_errors: true
+  changed_when: false
 
-- set_fact:
+- name: Save pritunl database setup key output to variable
+  set_fact:
     pritunl_db_key: "{{ cmd_output_1.stdout }}"
 
-- debug:
+- name: Print out Pritunl database setup key variable
+  debug:
     msg:
       - '#================================================#'
       - '# PRITUNL_DB_KEY {{ pritunl_db_key }}'
       - '#================================================#'
 
-- name: Print out pritunl default login user admin information
-  shell: "{{ pritunl_openvpn_init_cmd_default_login_admin_user }}"
+- name: Register Pritunl default login user admin information output
+  command: "{{ pritunl_openvpn_init_cmd_default_login_admin_user }}"
   register: cmd_output_2
   ignore_errors: true
+  changed_when: false
 
-- set_fact:
+- name: Save pritunl default admin user setup key output to variable
+  set_fact:
     pritunl_default_user: "{{ cmd_output_2.stdout }}"
 
-- debug:
+- name: Print out Pritunl default admin user setup key variable
+  debug:
     msg:
       - '#================================================#'
       - '# DEFAULT_USER {{ pritunl_default_user }}'
       - '#================================================#'
 
-- name: Print out pritunl default login pass admin information
-  shell: "{{ pritunl_openvpn_init_cmd_default_login_admin_pass }}"
+- name: Register Pritunl default login pass admin information output
+  command: "{{ pritunl_openvpn_init_cmd_default_login_admin_pass }}"
   register: cmd_output_3
   ignore_errors: true
+  changed_when: false
 
-- set_fact:
+- name: Save pritunl default admin password setup key output to variable
+  set_fact:
     pritunl_default_pass: "{{ cmd_output_3.stdout }}"
 
-- debug:
+- name: Print out Pritunl default admin password setup key variable
+  debug:
     msg:
       - '#================================================#'
       - '# DEFAULT_USER {{ pritunl_default_pass }}'
