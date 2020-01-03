@@ -11,7 +11,6 @@ PY_MOLECULE_VER := 2.22
 define OS_VER_LIST
 "ubuntu1804" \
 "ubuntu1604" \
-"debian10" \
 "debian9" \
 "debian8"
 endef

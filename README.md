@@ -1,6 +1,6 @@
-# Ansible Role: binbash_inc.vpn-pritunl-init-values
+# Ansible Role: binbash_inc.ansible_role_vpn_pritunl_init_values
 
-**Ansible Role Print in stdout the initial pritunl setup values.**
+**Ansible Role Print in stdout the initial user and pass pritunl setup values.**
 
 - PRITUNL_DB_KEY
 - DEFAULT_USER

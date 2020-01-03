@@ -18,7 +18,7 @@ galaxy_info:
         - xenial
         - bionic
   galaxy_tags:
-    - web
+    - vpn
     - system
     - users
     - orchestration
