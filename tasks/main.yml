@@ -18,7 +18,7 @@
       - '#================================================#'
 
 - name: Register Pritunl default login user admin information output
-  command: "{{ pritunl_openvpn_init_cmd_default_login_admin_user }}"
+  shell: "{{ pritunl_openvpn_init_cmd_default_login_admin_user }}"
   register: cmd_output_2
   ignore_errors: true
   changed_when: false
@@ -35,7 +35,7 @@
       - '#================================================#'
 
 - name: Register Pritunl default login pass admin information output
-  command: "{{ pritunl_openvpn_init_cmd_default_login_admin_pass }}"
+  shell: "{{ pritunl_openvpn_init_cmd_default_login_admin_pass }}"
   register: cmd_output_3
   ignore_errors: true
   changed_when: false
