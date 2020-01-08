@@ -26,52 +26,106 @@ pritunl_openvpn_init_cmd_default_login_admin_pass: "pritunl default-password | g
 
 ### Example Playbook
 
-We encourage the user to implement this role as follows, where `print_out_pritunl_setup_secrets` is a variable that will work till you change the admin default admin user and pass from the UI
+We encourage the user to implement this role as follows, where `print_out_pritunl_setup_secrets` is
+a variable that will work till you change the default admin user and pass from the UI
 
-1st round execution till you update admin user credentials from the UI
+After the 1st round execution you'll need to visit Pritunl UI eg: `vpn-pritunl-server.domain.com` and 
+set the **PRITUNL_DB_KEY**.
 ```
 vars:
-    print_out_pritunl_setup_secrets: True
+    print_out_pritunl_setup_secrets: true
 
-- role: binbash_inc.pritunl-openvpn-init-values
-      when: print_out_pritunl_setup_secrets == True
-      tags: openvpn-pritunl
+- role: binbash_inc.ansible_role_vpn_pritunl_init_values
+  when: print_out_pritunl_setup_secrets == true
+  tags: openvpn-pritunl-post-task
 ```
 
-2nd round execution the flag must be set to `False`
+2nd round execution the flag must be kept as `true` and you'll get the default admin user credentials 
+in order to re-visit the UI `vpn-pritunl-server.domain.com` and reset these with your new custom values.
+Pritunl will always request to change these credentials during your 1st log in. We don't recommend to 
+choose "Config Later" under any circumstances.
+
 ```
 vars:
-    print_out_pritunl_setup_secrets: False
+    print_out_pritunl_setup_secrets: true
 
 - role: binbash_inc.pritunl-openvpn-init-values
-      when: print_out_pritunl_setup_secrets == True
-      tags: openvpn-pritunl
+      when: print_out_pritunl_setup_secrets == true
+      tags: openvpn-pritunl-post-task
 ```
 
-if flag it's not set to `False` you'll get the following error:
-```
-FAILED! => {"changed": true, "cmd": "pritunl default-password | grep 'username: '", "delta": "0:00:01.158679", "end": "2019-03-26 22:58:33.768408", "failed": true, "msg": "non-zero return code", "rc": 1, "start": "2019-03-26 22:58:32.609729", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+### Expected Output
+
+```shell
+ok: [infra_ec2_pritunl_vpn]
+ __________________________________________________________
+/ TASK [binbash_inc.ansible_role_vpn_pritunl_init_values : \
+\ Print out Pritunl database setup key variable]           /
+ ----------------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [infra_ec2_pritunl_vpn] => {
+    "msg": [
+        "#================================================#",
+        "# PRITUNL_DB_KEY ddf1f3rth9g88j389n3e4c331e396555",
+        "#================================================#"
+    ]
+}
+
+ok: [infra_ec2_pritunl_vpn]
+ __________________________________________________________
+/ TASK [binbash_inc.ansible_role_vpn_pritunl_init_values : \
+\ Print out Pritunl default admin user setup key variable] /
+ ----------------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [infra_ec2_pritunl_vpn] => {
+    "msg": [
+        "#================================================#",
+        "# DEFAULT_USER   username: \"pritunl\"",
+        "#================================================#"
+    ]
+}
+
+ok: [infra_ec2_pritunl_vpn]
+ __________________________________________________________
+/ TASK [binbash_inc.ansible_role_vpn_pritunl_init_values : \
+| Print out Pritunl default admin password setup key       |
+\ variable]                                                /
+ ----------------------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+ok: [infra_ec2_pritunl_vpn] => {
+    "msg": [
+        "#================================================#",
+        "# DEFAULT_USER   password: \"Z5hHTU6sJwGr\"",
+        "#================================================#"
+    ]
+}
+ ____________
+< PLAY RECAP >
+ ------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
 ```
 
-Since the current output for the command will be an empty string as follows:
-```
-ubuntu@infra-openvpn:~$ sudo pritunl default-password | grep 'username: '
-ubuntu@infra-openvpn:~$
-```
-
-**NOTE:** The before error it's actually managed by `ignore_errors: yes` in order to avoid the ansible role to fail if the user forgets to set the flag to `False` after the admin user credentials update.
-
-And the outputs will result as shown below:
-
-```
-module.ec2_provisioner_ansible_2.null_resource.ec2-ansible-playbook-tags-vault-pass (local-exec):         "#================================================#",
-module.ec2_provisioner_ansible_2.null_resource.ec2-ansible-playbook-tags-vault-pass (local-exec):         "# DEFAULT_USER ",
-module.ec2_provisioner_ansible_2.null_resource.ec2-ansible-playbook-tags-vault-pass (local-exec):         "#================================================#"
-
-module.ec2_provisioner_ansible_2.null_resource.ec2-ansible-playbook-tags-vault-pass (local-exec):         "#================================================#",
-module.ec2_provisioner_ansible_2.null_resource.ec2-ansible-playbook-tags-vault-pass (local-exec):         "# DEFAULT_USER ",
-module.ec2_provisioner_ansible_2.null_resource.ec2-ansible-playbook-tags-vault-pass (local-exec):         "#================================================#"
-```
+if flag it's not set to `false` you'll not be printing this default values, consider that after you've
+setup them this outputs will be an empty string.
 
 ## License
 
