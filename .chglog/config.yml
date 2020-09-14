@@ -6,10 +6,8 @@ info:
   repository_url: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values
 options:
   header:
-    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
+    pattern: "^(.*)$"
     pattern_maps:
-      - Type
-      - Scope
       - Subject
   notes:
     keywords:
