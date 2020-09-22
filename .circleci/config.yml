@@ -16,9 +16,15 @@ jobs:
     steps:
       - checkout
 
-      - run: pwd
-      - run: ls -ltra
-      - run: git branch
+      - run:
+          name: Context Info Cmds
+          command: pwd && ls -ltra && git branch
+
+      - run:
+          name: Initialize Repo Makefiles
+          command: |
+            make init-makefiles
+            git update-index --assume-unchanged "Makefile
 
       - run:
           name: tests-init
