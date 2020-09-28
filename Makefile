@@ -22,9 +22,7 @@ init-makefiles: ## initialize makefiles
 	rm -rf ${MAKEFILES_DIR}
 	mkdir -p ${MAKEFILES_DIR}
 	git clone https://github.com/binbashar/le-dev-makefiles.git ${MAKEFILES_DIR}
-	echo "" >> ${MAKEFILE_PATH}
 
 -include ${MAKEFILES_DIR}/circleci/circleci.mk
 -include ${MAKEFILES_DIR}/release-mgmt/release.mk
 -include ${MAKEFILES_DIR}/ansible/ansible-roles.mk
-
