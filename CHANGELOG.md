@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v0.0.10"></a>
+## [v0.0.10] - 2020-10-02
+
+- BBL-381 | integrating circleci w/ sumologic + readme.md updated
+
+
 <a name="v0.0.9"></a>
 ## [v0.0.9] - 2020-09-29
 
@@ -80,7 +86,8 @@ All notable changes to this project will be documented in this file.
 - Initial commit
 
 
-[Unreleased]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.9...HEAD
+[Unreleased]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.10...HEAD
+[v0.0.10]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.9...v0.0.10
 [v0.0.9]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.8...v0.0.9
 [v0.0.8]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.7...v0.0.8
 [v0.0.7]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.6...v0.0.7
