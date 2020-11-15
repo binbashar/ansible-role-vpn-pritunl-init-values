@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+<a name="v0.0.11"></a>
+## [v0.0.11] - 2020-11-15
+
+- BBL-440 | improving Makefile init-makefiles w/ fixed version
+
+
 <a name="v0.0.10"></a>
 ## [v0.0.10] - 2020-10-02
 
@@ -86,7 +92,8 @@ All notable changes to this project will be documented in this file.
 - Initial commit
 
 
-[Unreleased]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.10...HEAD
+[Unreleased]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.11...HEAD
+[v0.0.11]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.10...v0.0.11
 [v0.0.10]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.9...v0.0.10
 [v0.0.9]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.8...v0.0.9
 [v0.0.8]: https://github.com/binbashar/ansible-role-vpn-pritunl-init-values/compare/v0.0.7...v0.0.8
